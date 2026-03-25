@@ -1,0 +1,68 @@
+﻿@model Projeto02.AppWebForum.Models.ComentarioClient
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<h1>Cadastro de Comentários</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Cadastro">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@*             <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div> *@
+            <div class="mb-3">
+                <label asp-for="ForumId" class="control-label"></label>
+
+
+                <select asp-for="ForumId" class="form-select select2" 
+                        asp-items="(SelectList)ViewBag.Foruns">
+                    <option value="0">SELECIONE</option>
+                </select>
+
+                <span asp-validation-for="ForumId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                
+                <select asp-for="UsuarioId" class="form-select"
+                        asp-items="(SelectList)ViewBag.Usuarios">
+                    <option value="0">SELECIONE</option>
+                </select>
+
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ComentarioInfo" class="control-label"></label>
+                
+                <textarea asp-for="ComentarioInfo" class="form-control"></textarea>
+
+                <span asp-validation-for="ComentarioInfo" class="text-danger"></span>
+            </div>
+@*             <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div> *@
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    
+    }
+}
